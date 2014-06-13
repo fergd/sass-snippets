@@ -6,11 +6,13 @@ My collection of Sass mixins, helpers, and snippets I tend to use in my projects
 Extends
 =======
 Firefox image hover wiggle bug
+------------------------------
 .stop-shakira{
 	-moz-backface-visibility: hidden;
 }
 
 Easy ellipsis
+-------------
 .ellipsis{
 	overflow: hidden;
 	white-space: nowrap;
