@@ -1,7 +1,3 @@
-/*==========================================
-Extends
-==========================================*/
-
 //Firefox image hover wiggle bug
 .stop-shakira{
 	-moz-backface-visibility: hidden;
@@ -14,6 +10,92 @@ Extends
 	text-overflow: ellipsis;
 	-ms-text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
+}
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.is-visually-hidden { 
+	border: 0; 
+	clip: rect(0 0 0 0); 
+	height: 1px; 
+	margin: -1px; 
+	overflow: hidden; 
+	padding: 0; 
+	position: absolute; 
+	width: 1px; 
+}
+
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+.is-visually-hidden.focusable:active, .is-visually-hidden.focusable:focus { 
+	clip: auto; 
+	height: auto; 
+	margin: 0; 
+	overflow: visible; 
+	position: static; 
+	width: auto; 
+}
+
+/* Hide text only */
+.hide-text{
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/* Hide completely, including from screen-readers */
+.is-completely-hidden { display: none; }
+
+/*==========================================
+Mixin for middle text alignment
+==========================================*/
+@mixin text-vert-align($line-height){
+	display:inline-block;
+	vertical-align: middle;
+	line-height:$line-height;
+}
+
+@mixin text-bottom-align($line-height){
+	display:inline-block;
+	vertical-align: bottom;
+	line-height:$line-height;
+}
+
+
+/*==========================================
+Centering absolutely positioned things
+==========================================*/
+
+@mixin l-center-ab($horz-center-absolute, $vert-center-absolute, $default-left-value: 50%, $default-top-value: 50%){
+	position:absolute;
+	left: $default-left-value;
+	top: $default-top-value;
+	transform:translate($horz-center-absolute, $vert-center-absolute);
+	-webkit-transform: translate($horz-center-absolute, $vert-center-absolute);
+	-ms-transform: translate($horz-center-absolute, $vert-center-absolute);
+}
+
+@mixin l-center-fixed($horz-center-fixed, $vert-center-fixed, $default-left-value: 50%, $default-top-value: 50%){
+	position:fixed;
+	left: $default-left-value;
+	top: $default-top-value;
+	transform:translate($horz-center-fixed, $vert-center-fixed);
+	-webkit-transform: translate($horz-center-fixed, $vert-center-fixed);
+	-ms-transform: translate($horz-center-fixed, $vert-center-fixed);
+}
+
+.vertically-centered{
+	position:absolute;
+	top:50%;
+	transform:translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+}
+
+.horizontally-centered{
+	position:absolute;
+	left:50%;
+	transform:translate(-50%, 0);
+	-webkit-transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
 }
 
 
