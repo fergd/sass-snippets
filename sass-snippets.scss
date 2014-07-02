@@ -2,7 +2,7 @@
 //example use only targeting the attr type and leaving the rest default: @include debug-labels($attr-type: attr(data-content));
 @mixin debug-labels($attr-type: attr(class), $debug-font-size: 1em, $debug-color: black, $debug-bg-color: yellow){
 	&:after{
-		content: '$attr-type';
+		content: $attr-type;
 		font-size: $debug-font-size;
 		font-family: serif;
 		color: $debug-color;
