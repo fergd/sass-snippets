@@ -1,6 +1,9 @@
-//Testing only: applies helper labels to elements on your page. Default setting pulls the class name, but you can target any HTML attribute. 
-//example use only targeting the attr type and leaving the rest default: @include debug-labels($attr-type: attr(data-content));
-@mixin debug-labels($attr-type: attr(class), $debug-font-size: 1em, $debug-color: black, $debug-bg-color: yellow){
+
+/*==
+Useful for testing layout. This applies helper labels to elements on your page. Default setting pulls the class name, but you can target any HTML attribute. 
+example use only targeting the attr type and leaving the rest default: @include debug-labels($attr-type: attr(data-content));
+==*/
+@mixin layout-labels($attr-type: attr(class), $debug-font-size: 1em, $debug-color: black, $debug-bg-color: yellow){
 	&:after{
 		content: $attr-type;
 		font-size: $debug-font-size;
@@ -11,12 +14,17 @@
 	}
 }
 
-//Firefox image hover wiggle bug
+/*==
+Firefox image hover wiggle bug.
+Appropriate in the reset.
+==*/
 .stop-shakira{
 	-moz-backface-visibility: hidden;
 }
 
-//Easy ellipsis
+/*==
+Easy ellipsis
+==*/
 .ellipsis{
 	overflow: hidden;
 	white-space: nowrap;
@@ -38,7 +46,8 @@
 }
 
 /* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
-.is-visually-hidden.focusable:active, .is-visually-hidden.focusable:focus { 
+.is-visually-hidden.focusable:active, 
+.is-visually-hidden.focusable:focus { 
 	clip: auto; 
 	height: auto; 
 	margin: 0; 
@@ -48,7 +57,7 @@
 }
 
 /* Hide text only */
-.hide-text{
+.hidden-text{
 	text-indent: 100%;
 	overflow: hidden;
 	white-space: nowrap;
@@ -60,55 +69,50 @@
 /*==========================================
 Mixin for middle text alignment
 ==========================================*/
+
 @mixin text-vert-align($line-height){
-	display:inline-block;
+	display: inline-block;
 	vertical-align: middle;
-	line-height:$line-height;
+	line-height: $line-height;
 }
 
 @mixin text-bottom-align($line-height){
-	display:inline-block;
+	display: inline-block;
 	vertical-align: bottom;
-	line-height:$line-height;
+	line-height: $line-height;
 }
 
 
 /*==========================================
 Centering absolutely positioned things
 ==========================================*/
-
-@mixin l-center-ab($horz-center-absolute, $vert-center-absolute, $default-left-value: 50%, $default-top-value: 50%){
-	position:absolute;
-	left: $default-left-value;
-	top: $default-top-value;
-	transform:translate($horz-center-absolute, $vert-center-absolute);
-	-webkit-transform: translate($horz-center-absolute, $vert-center-absolute);
-	-ms-transform: translate($horz-center-absolute, $vert-center-absolute);
-}
-
-@mixin l-center-fixed($horz-center-fixed, $vert-center-fixed, $default-left-value: 50%, $default-top-value: 50%){
-	position:fixed;
-	left: $default-left-value;
-	top: $default-top-value;
-	transform:translate($horz-center-fixed, $vert-center-fixed);
-	-webkit-transform: translate($horz-center-fixed, $vert-center-fixed);
-	-ms-transform: translate($horz-center-fixed, $vert-center-fixed);
+@mixin centered-blocks($positioned-type: absolute, $left-value: 50%, $top-value: 50%, $horz-value: -50%, $vert-value: -50){
+	position: $positioned-type;
+	left: $left-value;
+	top: $top-value;
+	transform:translate($horz-value, $vert-value);
+	-webkit-transform: translate($horz-value, $vert-value);
+	-ms-transform: translate($horz-value, $vert-value);
 }
 
 .vertically-centered{
-	position:absolute;
-	top:50%;
-	transform:translate(0, -50%);
-	-webkit-transform: translate(0, -50%);
-	-ms-transform: translate(0, -50%);
+	@include centered-blocks($left-value: 0, $horz-value: 0);
 }
 
 .horizontally-centered{
-	position:absolute;
-	left:50%;
-	transform:translate(-50%, 0);
-	-webkit-transform: translate(-50%, 0);
-	-ms-transform: translate(-50%, 0);
+	@include centered-blocks($top-value: 0, $vert-value: 0);
 }
 
+/*===============================================================
+Hide the browser's addition of spinner controls on number fields
+Ideally, this would be in the reset
+===============================================================*/
+input[type=number] { 
+	-moz-appearance:textfield; 
+}
 
+input[type=number]::-webkit-outer-spin-button, 
+input[type=number]::-webkit-inner-spin-button { 
+	-webkit-appearance: none; 
+	margin: 0; 
+}
