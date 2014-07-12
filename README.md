@@ -125,3 +125,19 @@ input[type=number]::-webkit-inner-spin-button {
 	margin: 0; 
 }
 ```
+Semi-transparent Colors Mixin
+---
+Credit: [John W. Long] 
+```sh
+@mixin alpha-attribute($attribute, $color, $background) {
+  $percent: alpha($color) * 100%;
+  $opaque: opacify($color, 1);
+  $solid-color: mix($opaque, $background, $percent);
+  #{$attribute}: $solid-color;
+  #{$attribute}: $color;
+}
+//Example
+@include alpha-attribute('background-color', rgba(black, 0.5), white);
+```
+
+[John W. Long]:http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
